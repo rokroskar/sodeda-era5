@@ -1,6 +1,5 @@
 from .dataset import Dataset
 from .flow import Era5Flow
-from .dashboard import demo
 
 from tqdm import tqdm 
 
@@ -19,9 +18,15 @@ def preload():
 
 
 @click.command()
-def dashboard():
+@click.option("--host")
+@click.option("--port",type=int)
+@click.option("--root-path")
+def dashboard(host, port, root_path):
     "Launch the dashboard"
-    demo.launch()
+    from .dashboard import demo
+
+    demo.launch(server_port=port, server_name=host, root_path=root_path)
+
 
 
 @click.group()
