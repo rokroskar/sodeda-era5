@@ -27,7 +27,26 @@ python -c "from sodeda_era5.loader import ARCO_ERA5; print(ARCO_ERA5()(time={'st
 ```
 
 
-## Setup S3 storage
+## Preload dataset
+A simple example is given by the deskriptor set in `deskriptors.jsonl`. This dataset can be preloaded and stored on the configured S3 storage (see below) or it will be stored in a local cache (given by the environment variable `LOCAL_CACHE`. It defaults to: `./tmp/era5chunks`).
+
+To preload run
+```
+rye run sodeda-era5 preload
+```
+
+## Dashboard
+A gradio dashboard is available with 
+
+```
+rye run sodeda-era5 dashboard
+```
+
+Note: Don't try to load the full dataset. I can only display one timestep at a time anyway. Even the full globe for one timestep takes quite some time. I assume, that's mainly due to plotting and transfering to browser, and not the data fetching.
+
+
+
+## Optional: Setup S3 storage
 First add your S3 credentials to your `~/.aws/credentials` under a new profile. For example
 
 ```
@@ -55,24 +74,6 @@ S3_PROFILE=your-profile-name
 # Optional: Path to local cache
 LOCAL_CACHE=./.cache
 ```
-
-## Preload dataset
-A simple example is given by the deskriptor set in `deskriptors.jsonl`. This dataset can be preloaded and stored on the previously configured S3 storage.
-
-To preload run
-```
-rye run sodeda-era5 preload
-```
-
-## Dashboard
-A gradio dashboard is available with 
-
-```
-rye run sodeda-era5 dashboard
-```
-
-Note: Don't try to load the full dataset. I can only display one timestep at a time anyway. Even the full globe for one timestep takes quite some time. I assume, that's mainly due to plotting and transfering to browser, and not the data fetching.
-
 
 ## Build container for deployment
 
