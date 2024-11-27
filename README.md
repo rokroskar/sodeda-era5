@@ -77,21 +77,22 @@ LOCAL_CACHE=./.cache
 
 ## Build container for deployment
 
-Be sure to have docker installed then run
-
-```
-rye build --wheel --clean
-```
-
-and build the container with
-Note: the container requires an existing `.env` file
+Be sure to have docker installed then build the container. 
 ```
 docker build . --tag sodeda-era5
 ```
+Note: The container requires an existing and populated `.env` file to be able to use the S3 storage.
 
 Run it with 
+```
+docker run -p 7860:7860 sodeda-era5
+```
+
+
+To run it with S3 storage, you need to mount the credentials (and add `.env` during build or mount it as well)
 ```
 docker run -p 7860:7860 \
     -v ~/.aws/credentials:/root/.aws/credentials:ro \
     sodeda-era5
 ```
+
