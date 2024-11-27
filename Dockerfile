@@ -18,11 +18,13 @@ COPY src ./src
 
 RUN rye build --wheel --clean
 
-FROM python:3.12-slim 
+FROM python:3.12-slim
 
 COPY --from=builder /dist ./dist
 
-RUN pip install uv
+RUN apt-get update -y && \
+    apt-get install -y build-essential && \
+    pip install uv
 RUN uv pip install --system --no-cache /dist/*.whl
 
 COPY .env* .
