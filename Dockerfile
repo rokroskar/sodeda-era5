@@ -10,7 +10,7 @@ RUN apt-get update && apt-get install -y \
 ENV RYE_HOME="/opt/rye"
 ENV PATH="$RYE_HOME/shims:$PATH"
 
-RUN curl -sSf https://rye.astral.sh/get | RYE_TOOLCHAIN_VERSION="3.11" RYE_INSTALL_OPTION="--yes" bash
+RUN curl -sSf https://rye.astral.sh/get | RYE_TOOLCHAIN_VERSION="3.12.3" RYE_INSTALL_OPTION="--yes" bash
 
 COPY . /
 
