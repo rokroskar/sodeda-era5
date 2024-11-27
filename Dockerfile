@@ -12,8 +12,7 @@ ENV PATH="$RYE_HOME/shims:$PATH"
 
 RUN curl -sSf https://rye.astral.sh/get | RYE_TOOLCHAIN_VERSION="3.11" RYE_INSTALL_OPTION="--yes" bash
 
-COPY .python-version pyproject.toml .python-version requirements.lock README.md /
-COPY src /src
+COPY . /
 
 RUN rye build --wheel --clean
 
